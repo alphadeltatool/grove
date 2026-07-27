@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+// 노트(.md)와 코드를 같은 폴더에 두는 기존 구조(data-structure/, coding-test/)를
+// 그대로 유지하기 위해 src/main/java로 옮기지 않고 소스 경로만 지정
+sourceSets {
+    main {
+        java {
+            srcDirs = ['data-structure', 'coding-test']
+        }
+    }
+}
+
+// 소스에 한글 주석이 있어서 인코딩 명시 안 하면 Windows 기본 인코딩으로 컴파일해서 깨짐
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

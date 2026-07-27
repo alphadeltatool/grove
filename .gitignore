@@ -3,3 +3,9 @@
 target/
 build/
 .DS_Store
+.gradle/
+
+# 개인 코칭 맥락(회사·고민·수면패턴·강의구매내역 등)이 담긴 문서라 레포에는 안 올림 - 로컬에만 유지
+HANDOFF.md
+PROGRESS.md
+essentials/learning-principles.md
