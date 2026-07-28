@@ -7,7 +7,22 @@ import java.util.*;
 public class TwoSum {
 
     public int[] solution(int[] numbers) {
-        // TODO(Day5 이후): 이중 반복문으로 모든 쌍 합 → Set으로 중복제거+정렬 → int[] 변환
-        return new int[]{};
+        Set<Integer> sums = new TreeSet<>();
+
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = i+1; j < numbers.length; j++) {
+                int sum = numbers[i] + numbers[j];
+                sums.add(sum);
+            }
+        }
+
+        int[] result = new int[sums.size()];
+        int index = 0;
+        for (int sum : sums) {
+            result[index] = sum;
+            index++;
+        }
+
+        return result;
     }
 }

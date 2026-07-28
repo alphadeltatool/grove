@@ -16,7 +16,7 @@ public class MyLinkedList {
     }
 
     // TODO Step 2: add() 는 뼈대 채운 뒤 이어서 작성
-    private void add(Object value) {
+    public void add(Object value) {
         Node newNode = new Node(value);
         if (first == null) {
             first = newNode;
@@ -38,6 +38,19 @@ public class MyLinkedList {
             System.out.println(node.data);
             node = node.next;
         }
+     }
+
+     public boolean contains(Object value) {
+        Node node = first;
+        while (node != null) {
+            if (node.data.equals(value)) {
+                return true;
+            }
+
+            node = node.next;
+        }
+
+        return false;
      }
 
      public static void main(String[] args) {
