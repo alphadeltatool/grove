@@ -11,8 +11,8 @@
 | **List** | 순서 있는 목록 | 순서대로 담고 인덱스로 접근 | |
 | └ ArrayList | 배열 기반 (연속 메모리) | 조회 많을 때 (index O(1)) | ✅ Day 1 |
 | └ LinkedList | 노드 연결 기반 | 앞/중간 삽입·삭제 많을 때 | ✅ Day 2 |
-| **Stack** | 후입선출 (LIFO) | undo, 뒤로가기, 괄호검사 | ⬜ Day 4 |
-| **Queue** | 선입선출 (FIFO) | 대기열, 작업 큐 | ⬜ Day 4 |
+| **Stack** | 후입선출 (LIFO) | undo, 뒤로가기, 괄호검사 | ✅ Day 4 |
+| **Queue** | 선입선출 (FIFO) | 대기열, 작업 큐 | ✅ Day 4 |
 | **Deque** | 양쪽 다 넣고 뺌 | 스택+큐 겸용 (자바 ArrayDeque) | ⬜ Day 4 |
 
 ## 비선형 (가지치기/연결 구조)
