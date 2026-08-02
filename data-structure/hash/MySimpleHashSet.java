@@ -21,7 +21,7 @@ public class MySimpleHashSet {
 
     public void add(Object value) {
         int index = getIndex(value);
-        if (!buckets[index].contains(value)) {
+        if (!contains(value)) {
             buckets[index].add(value);
         }
     }
