@@ -52,6 +52,22 @@ HASH SET 을 쓰는 이유는 ARRAYLIST 는 중복을 허용하지만 SET 은 �
 
 ---
 
+## 구현 (2026-08-19)
+
+`MyGraph.java` 작성 시작. `addEdge` + `bfs` 완료, `dfs`·`main`은 다음 세션.
+
+- **addEdge**에서 `Map.computeIfAbsent(key, 람다)` 쓰다가 람다 자체가 안 잡혀있다는 걸 발견 → 별도로 딥다이브:
+  - `Function<T,R>`는 "인자 1개 받아 값 1개 리턴"이지 인자 2개가 아님(오해했던 부분)
+  - 람다는 익명 클래스를 줄여쓴 것: `k -> new ArrayList<>()`는 `new Function<>(){ public List<String> apply(String k){ return new ArrayList<>(); } }`와 동일. 커스텀 `Greeter` 인터페이스(`name -> "안녕 "+name`)로 먼저 체득한 뒤 `Function`에 대입.
+  - **핵심 포인트**: 람다를 쓰는 순간(대입/전달 시점)에 객체가 생성되고, `.apply()`가 실제로 호출되는 시점에야 몸통이 실행됨 — "생성 시점 ≠ 실행 시점". 스스로 "그럼 만드는 순간 무조건 객체 생성되는거네?"로 정확히 요약함.
+  - 완성: `graph.computeIfAbsent(a, k -> new ArrayList<>()).add(b);` 패턴으로 양방향(a→b, b→a) 완성.
+- **BFS**: Queue+HashSet 준비물, while+poll+출력까지 힌트만 보고 정확히 작성. 버그 2개 스스로/피드백으로 수정:
+  - `queue.poll()`을 이웃 추가에 잘못 씀(꺼내는 메서드를 넣기에 사용) → 스스로 `offer()`로 정정
+  - 고치는 과정에서 `visited.add(neighbor)` 누락 → "방문 안 한 걸 큐에 넣는데 왜 visited에도 넣냐"는 질문에 삼각형 그래프(A-B-C 상호연결) 트레이스로 "발견 즉시 표시 안 하면 큐에 중복 쌓여서 같은 노드가 두 번 출력되는 버그" 확인 후 이해.
+- **다음 세션 시작점**: `dfs(start)`(재귀 헬퍼, 힌트 파일에 이미 있음) → `main()`에서 `A-B,A-C,B-D,C-E` 그래프 검증(BFS=A,B,C,D,E / DFS=A,B,D,C,E) → 코테 1문제(공백 여전).
+
+---
+
 ## 로그 (2026-08-17, 최초 작성분)
 
 ## 큰 그림
