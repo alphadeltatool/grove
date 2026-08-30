@@ -54,7 +54,14 @@ HASH SET 을 쓰는 이유는 ARRAYLIST 는 중복을 허용하지만 SET 은 �
 
 ## 구현 (2026-08-19)
 
-`MyGraph.java` 작성 시작. `addEdge` + `bfs` 완료, `dfs`·`main`은 다음 세션.
+`MyGraph.java` 완성 — `addEdge` + `bfs` + `dfs` + `main` 전부 작성 및 실행 검증까지 완료.
+
+**실행 결과** (`A-B, A-C, B-D, C-E` 그래프, `main()`에서 `bfs("A")` / `dfs("A")` 호출):
+```
+BFS: A, B, C, D, E
+DFS: A, B, D, C, E
+```
+기대값과 정확히 일치, `javac`/`java`로 직접 컴파일·실행해서 확인함.
 
 - **addEdge**에서 `Map.computeIfAbsent(key, 람다)` 쓰다가 람다 자체가 안 잡혀있다는 걸 발견 → 별도로 딥다이브:
   - `Function<T,R>`는 "인자 1개 받아 값 1개 리턴"이지 인자 2개가 아님(오해했던 부분)

@@ -94,7 +94,19 @@ public class MyGraph {
     // [스택 버전을 원하면] Deque<String> stack = new ArrayDeque<>() 로 스택처럼 사용(push/pop).
     //   단, 스택 버전은 "꺼낼 때 visited 체크"라 BFS와 체크 시점이 달라짐 — 헷갈리면 일단 재귀로 먼저 완성하고 나중에 비교해보세요.
     public void dfs(String start) {
+        Set<String> visited = new HashSet<>();
+        dfsHelper(start, visited);
+    }
 
+    private void dfsHelper(String node, Set<String> visited) {
+        visited.add(node);
+        System.out.println(node);
+        List<String> neighbors = graph.get(node);
+        for (String neighbor : neighbors) {
+            if(!visited.contains(neighbor)) {
+                dfsHelper(neighbor, visited);
+            }
+        }
     }
 
 
@@ -102,6 +114,13 @@ public class MyGraph {
     // A-B, A-C, B-D, C-E 관계 (Q2 예시 그래프 그대로)
     // 기대 결과: bfs("A") → A,B,C,D,E / dfs("A") → A,B,D,C,E
     public static void main(String[] args) {
+        MyGraph myGraph = new MyGraph();
+        myGraph.addEdge("A" ,"B");
+        myGraph.addEdge("A" ,"C");
+        myGraph.addEdge("B" ,"D");
+        myGraph.addEdge("C" ,"E");
 
+        myGraph.bfs("A");
+        myGraph.dfs("A");
     }
 }
